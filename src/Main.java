@@ -23,6 +23,13 @@ public class Main {
             System.out.println("id = " + artist.get_id() + ", name = " + artist.getName());
         }
 
+        List<String> albumsForArtist =
+                dataSource.queryAlbumsForArtist("Carole King", DataSource.ORDER_BY_ASC);
+
+        for (String album : albumsForArtist) {
+            System.out.println(album);
+        }
+
         dataSource.close();
     }
 }
