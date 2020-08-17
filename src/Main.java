@@ -1,5 +1,6 @@
 import model.Artist;
 import model.DataSource;
+import model.SongArtist;
 
 import java.util.List;
 
@@ -29,6 +30,22 @@ public class Main {
         for (String album : albumsForArtist) {
             System.out.println(album);
         }
+
+        List<SongArtist> songArtists =
+                dataSource.queryArtistsForSong("Go Your Own Way", DataSource.ORDER_BY_ASC);
+
+        if (songArtists == null) {
+            System.out.println("Couldn't find artist for the song");
+            return;
+        }
+
+        for (SongArtist artist : songArtists) {
+            System.out.println("Artists name = " + artist.getArtistName() +
+                    ", Album name = " + artist.getAlbumName() +
+                    ", Track = " + artist.getTrack());
+        }
+
+        dataSource.querySongsMetadata();
 
         dataSource.close();
     }
